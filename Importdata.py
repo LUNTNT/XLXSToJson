@@ -22,11 +22,9 @@ try:
 except Exception:
     print("Unable to connect to the server.")
 
-db = client["example2db"]
+db = client["example3db"]
 
 col_name = get_sheetname(Filepath)
-
-print(col_name[0])
 
 with open(Filepath) as file:
     file_data = json.load(file)
@@ -35,5 +33,5 @@ for i in col_name:
     new_col = db[i]
     x = new_col.insert_many(file_data[i])
     new_col = None
-
+print("Done")
 #print(collection.inserted_ids)
