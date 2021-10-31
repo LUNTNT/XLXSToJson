@@ -11,10 +11,11 @@ def get_sheetname(inputfile):
 
 
 # Replace the uri string with your MongoDB deployment's connection string.
-conn_str = "mongodb://localhost:27017/"
+Conn_str = "mongodb://localhost:27017/"
+Filepath = "data.json"
 
 # set a 5-second connection timeout
-client = pymongo.MongoClient(conn_str, serverSelectionTimeoutMS=5000)
+client = pymongo.MongoClient(Conn_str, serverSelectionTimeoutMS=5000)
 
 try:
    print(client.list_database_names())
@@ -23,11 +24,11 @@ except Exception:
 
 db = client["example2db"]
 
-col_name = get_sheetname('data.json')
+col_name = get_sheetname(Filepath)
 
 print(col_name[0])
 
-with open('data.json') as file:
+with open(Filepath) as file:
     file_data = json.load(file)
 
 for i in col_name: 
