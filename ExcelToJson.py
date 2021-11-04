@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 from flask import Flask, json, render_template, request, jsonify
 
