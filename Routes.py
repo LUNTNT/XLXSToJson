@@ -21,7 +21,6 @@ def users():
         wb = pd.read_excel(f)
         isjson= wb.to_json(orient= 'records')
         ans = json.loads(isjson)
-        abc = str(ans)
         header = {"Content-Type": "application/json"}
     try:   
         r = requests.post("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=header, data = json.dumps(ans))
