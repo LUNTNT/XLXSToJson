@@ -22,11 +22,11 @@ def users():
         isjson= wb.to_json(orient= 'records')
         ans = json.loads(isjson)
         abc = str(ans)
-    
-
+        header = {"Content-Type": "application/json"}
     try:   
-        r = requests.post("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", json = json.dumps(ans))
+        r = requests.post("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=header, data = json.dumps(ans))
         print(r)
+        print(r.text)
         return jsonify(ans)
          
     except:
