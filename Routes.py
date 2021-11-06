@@ -2,6 +2,9 @@ import pandas as pd
 import requests
 from flask import Flask, json, render_template, request, jsonify
 
+post_header = {"Content-Type": "application/json"}
+get_header = {'Authorization': 'access_token myToken'}
+
 app = Flask(__name__)
 
 @app.route('/users', methods=['POST', 'GET'])
@@ -9,8 +12,8 @@ def users():
    
     if request.method == 'POST':
         f = request.files['file']
-        data_xls = pd.ExcelFile(f)
-        sheetList = data_xls.sheet_names
+        #data_xls = pd.ExcelFile(f)
+        #sheetList = data_xls.sheet_names
         isjson=json
         
         #for x in sheetList:
@@ -21,9 +24,9 @@ def users():
         wb = pd.read_excel(f)
         isjson= wb.to_json(orient= 'records')
         ans = json.loads(isjson)
-        header = {"Content-Type": "application/json"}
+        
     try:   
-        r = requests.post("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=header, data = json.dumps(ans))
+        r = requests.post("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=post_header, data = json.dumps(ans))
         print(r)
         print(r.text)
         return jsonify(ans)
@@ -31,25 +34,33 @@ def users():
     except:
         return render_template('index.html')
     
-
 @app.route('/customers', methods=['POST', 'GET'])
 def customers():
    
     if request.method == 'POST':
         f = request.files['file']
-        data_xls = pd.ExcelFile(f)
-        sheetList = data_xls.sheet_names
+        #data_xls = pd.ExcelFile(f)
+        #sheetList = data_xls.sheet_names
         isjson=json
-        ans={}
         
-        for x in sheetList:
-            wb = pd.read_excel(f, sheet_name=x)
-            isjson= wb.to_json(orient= 'records')
-            ans[x] = json.loads(isjson)
+        #for x in sheetList:
+        #    wb = pd.read_excel(f, sheet_name=x)
+        #    isjson= wb.to_json(orient= 'records')
+        #    ans[x] = json.loads(isjson)
 
+        wb = pd.read_excel(f)
+        isjson= wb.to_json(orient= 'records')
+        ans = json.loads(isjson)
+        
+    
     try:                   
-        r = requests.post("https://mf-api-customer-nccrp.ondigitalocean.app/api/customers/create", data = ans)
-        return ans
+        postr = requests.post("https://mf-api-customer-nccrp.ondigitalocean.app/api/customers/addMany", headers=post_header, data = json.dumps(ans))
+        print(postr)
+        print(postr.text)
+        getr = requests.get("https://mf-api-customer-nccrp.ondigitalocean.app/api/customers/addMany", headers=get_header)
+        print(getr)
+        print(getr.text)
+        return jsonify(ans)
     except:
         return render_template('index.html')
 
@@ -57,20 +68,26 @@ def customers():
 def tags():
     if request.method == 'POST':
         f = request.files['file']
-        print(f)
-        data_xls = pd.ExcelFile(f)
-        sheetList = data_xls.sheet_names
+        #data_xls = pd.ExcelFile(f)
+        #sheetList = data_xls.sheet_names
         isjson=json
-        ans={}
+        #ans={}
         
-        for x in sheetList:
-            wb = pd.read_excel(f, sheet_name=x)
-            isjson= wb.to_json(orient= 'records')
-            ans[x] = json.loads(isjson)
+        #for x in sheetList:
+        #    wb = pd.read_excel(f, sheet_name=x)
+        #    isjson= wb.to_json(orient= 'records')
+        #    ans[x] = json.loads(isjson)
 
-    try:                   
-        r = requests.put("", data = ans)
-        return ans
+        wb = pd.read_excel(f)
+        isjson= wb.to_json(orient= 'records')
+        ans = json.loads(isjson)
+
+    try:   
+        r = requests.put("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=post_header, data = json.dumps(ans))
+        print(r)
+        print(r.text)
+        return jsonify(ans)
+         
     except:
         return render_template('index.html')
 
@@ -79,19 +96,26 @@ def roles():
     
     if request.method == 'POST':
         f = request.files['file']
-        data_xls = pd.ExcelFile(f)
-        sheetList = data_xls.sheet_names
+        #data_xls = pd.ExcelFile(f)
+        #sheetList = data_xls.sheet_names
         isjson=json
-        ans={}
+        #ans={}
         
-        for x in sheetList:
-            wb = pd.read_excel(f, sheet_name=x)
-            isjson= wb.to_json(orient= 'records')
-            ans[x] = json.loads(isjson)
+        #for x in sheetList:
+        #    wb = pd.read_excel(f, sheet_name=x)
+        #    isjson= wb.to_json(orient= 'records')
+        #    ans[x] = json.loads(isjson)
 
-    try:                   
-        r = requests.put("", data = ans)
-        return ans
+        wb = pd.read_excel(f)
+        isjson= wb.to_json(orient= 'records')
+        ans = json.loads(isjson)
+
+    try:   
+        r = requests.put("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=post_header, data = json.dumps(ans))
+        print(r)
+        print(r.text)
+        return jsonify(ans)
+         
     except:
         return render_template('index.html')
 
@@ -100,19 +124,26 @@ def rules():
     
     if request.method == 'POST':
         f = request.files['file']
-        data_xls = pd.ExcelFile(f)
-        sheetList = data_xls.sheet_names
+        #data_xls = pd.ExcelFile(f)
+        #sheetList = data_xls.sheet_names
         isjson=json
-        ans={}
+        #ans={}
         
-        for x in sheetList:
-            wb = pd.read_excel(f, sheet_name=x)
-            isjson= wb.to_json(orient= 'records')
-            ans[x] = json.loads(isjson)
+        #for x in sheetList:
+        #    wb = pd.read_excel(f, sheet_name=x)
+        #    isjson= wb.to_json(orient= 'records')
+        #    ans[x] = json.loads(isjson)
 
-    try:                   
-        r = requests.post("", data = ans)
-        return ans
+        wb = pd.read_excel(f)
+        isjson= wb.to_json(orient= 'records')
+        ans = json.loads(isjson)
+
+    try:   
+        r = requests.post("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=post_header, data = json.dumps(ans))
+        print(r)
+        print(r.text)
+        return jsonify(ans)
+         
     except:
         return render_template('index.html')
 
@@ -121,19 +152,26 @@ def flows():
     
     if request.method == 'POST':
         f = request.files['file']
-        data_xls = pd.ExcelFile(f)
-        sheetList = data_xls.sheet_names
+        #data_xls = pd.ExcelFile(f)
+        #sheetList = data_xls.sheet_names
         isjson=json
-        ans={}
+        #ans={}
         
-        for x in sheetList:
-            wb = pd.read_excel(f, sheet_name=x)
-            isjson= wb.to_json(orient= 'records')
-            ans[x] = json.loads(isjson)
+        #for x in sheetList:
+        #    wb = pd.read_excel(f, sheet_name=x)
+        #    isjson= wb.to_json(orient= 'records')
+        #    ans[x] = json.loads(isjson)
 
-    try:                   
-        r = requests.post("", data = ans)
-        return ans
+        wb = pd.read_excel(f)
+        isjson= wb.to_json(orient= 'records')
+        ans = json.loads(isjson)
+
+    try:   
+        r = requests.post("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=post_header, data = json.dumps(ans))
+        print(r)
+        print(r.text)
+        return jsonify(ans)
+         
     except:
         return render_template('index.html')
 
