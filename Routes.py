@@ -1,9 +1,9 @@
+import model
 import pandas as pd
 import requests
 from flask import Flask, json, render_template, request, jsonify
 
-post_header = {"Content-Type": "application/json"}
-get_header = {'Authorization': 'access_token myToken'}
+
 
 app = Flask(__name__)
 
@@ -26,9 +26,10 @@ def users():
         ans = json.loads(isjson)
         
     try:   
-        r = requests.post("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=post_header, data = json.dumps(ans))
-        print(r)
+        r = requests.post("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=model.post_header, data = json.dumps(ans))
+        print(r.status_code)
         print(r.text)
+        
         return jsonify(ans)
          
     except:
@@ -54,10 +55,10 @@ def customers():
         
     
     try:                   
-        postr = requests.post("https://mf-api-customer-nccrp.ondigitalocean.app/api/customers/addMany", headers=post_header, data = json.dumps(ans))
+        postr = requests.post("https://mf-api-customer-nccrp.ondigitalocean.app/api/customers/addMany", headers=model.post_header, data = json.dumps(ans))
         print(postr)
         print(postr.text)
-        getr = requests.get("https://mf-api-customer-nccrp.ondigitalocean.app/api/customers/addMany", headers=get_header)
+        getr = requests.get("https://mf-api-customer-nccrp.ondigitalocean.app/api/customers/addMany", headers=model.get_header)
         print(getr)
         print(getr.text)
         return jsonify(ans)
@@ -83,7 +84,7 @@ def tags():
         ans = json.loads(isjson)
 
     try:   
-        r = requests.put("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=post_header, data = json.dumps(ans))
+        r = requests.put("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=model.post_header, data = json.dumps(ans))
         print(r)
         print(r.text)
         return jsonify(ans)
@@ -111,7 +112,7 @@ def roles():
         ans = json.loads(isjson)
 
     try:   
-        r = requests.put("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=post_header, data = json.dumps(ans))
+        r = requests.put("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=model.post_header, data = json.dumps(ans))
         print(r)
         print(r.text)
         return jsonify(ans)
@@ -139,7 +140,7 @@ def rules():
         ans = json.loads(isjson)
 
     try:   
-        r = requests.post("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=post_header, data = json.dumps(ans))
+        r = requests.post("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=model.post_header, data = json.dumps(ans))
         print(r)
         print(r.text)
         return jsonify(ans)
@@ -167,7 +168,7 @@ def flows():
         ans = json.loads(isjson)
 
     try:   
-        r = requests.post("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=post_header, data = json.dumps(ans))
+        r = requests.post("https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany", headers=model.post_header, data = json.dumps(ans))
         print(r)
         print(r.text)
         return jsonify(ans)
@@ -175,13 +176,6 @@ def flows():
     except:
         return render_template('index.html')
 
-@app.route('/test', methods=['POST', 'GET'])
-def test():
-    if request.method == 'POST':
-        data = request.get_json()
-
-        return jsonify(data)
-        
 
 if __name__ == "__main__":
     app.run(debug=True)
