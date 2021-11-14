@@ -1,15 +1,25 @@
-from datetime import time
 
+#URL FOR EACH ROUTE
+UserPost = "https://mf-api-user-sj8ek.ondigitalocean.app/mf-2/api/users/addMany"
+CustomerPost = "https://mf-api-customer-nccrp.ondigitalocean.app/api/customers/addMany"
+CustomerGet = "https://mf-api-customer-nccrp.ondigitalocean.app/api/customers/addMany"
+TagPut = ""
+RolePut = ""
+RulePost = ""
+FlowPost = ""
 
+#HTTP header
 post_header = {"Content-Type": "application/json"}
 get_header = {'Authorization': 'access_token myToken'}
 
-User = {
+
+#JSON FILE SCHEMA
+UserSchema = {
     "type" : "object",
     "properties" : {
         "CreatedAt" : {"type" : "string"},
         "Password" : {"type" : "string"},
-        "UserName" : {"type" : "string"},
+        "Username" : {"type" : "string"},
         "Email" : {"type" : "string"},
         "Role" : {"type" : "string"},
         "Status" : {"type" : "string"},
@@ -19,7 +29,7 @@ User = {
         "LastLogin" : {"type" : "string"},
         "Authority" : {"type" : "object"},
         "Channels" : {"type" : "array", "items" : {"type" : "string"}},
-        "ChannelInfo" : {"type" : "ojecct"},
+        "ChannelInfo" : {"type" : "object"},
         "Phone" : {"type" : "string"},
     }
 }
@@ -48,7 +58,7 @@ User_Info = {
     }
 }
 
-Customer = {
+CustomerSchema = {
     "type" : "object",
     "properties" : {
         "ID" : {"type" : "string"},
@@ -66,12 +76,12 @@ Customer = {
         "Birthday" : {"type" : "string"},
         "Country" : {"type" : "string"},
         "Address" : {"type" : "string"},
-        "CreatedAt" : {"type" : "number"},
-        "UpdatedAt" : {"type" : "number"},
+        "CreatedAt" : {"type" : "string"},
+        "UpdatedAt" : {"type" : "string"},
     }
 }
 
-Role = {
+RoleSchema = {
     "type" : "object",
     "properties" : {
         "Name" : {"type" : "string"},
@@ -86,3 +96,18 @@ Role = {
         "Admin" : {"type" : "boolean"},
     }
 }
+
+TagSchema = {
+    "type" : "object",
+    "properties" : {
+        "ID" : {"type" : "string"},
+        "Tags" : {"type" : "string"},
+        "Total" : {"type" : "number"},
+        "Created" : {"type" : "string"},
+        "Updated" : {"type" : "string"},
+    }
+}
+
+RuleSchema = {}
+
+FlowSchema = {}
