@@ -15,7 +15,9 @@ get_header = {'Authorization': 'access_token myToken'}
 
 #JSON FILE SCHEMA
 UserSchema = {
-    "type" : "object",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/product.schema.json",
+    "type" : "array",
     "properties" : {
         "CreatedAt" : {"type" : "string"},
         "Password" : {"type" : "string"},
@@ -27,15 +29,17 @@ UserSchema = {
         "Team" : {"type" : "string"},
         "DivisionName" : {"type" : "string"},
         "LastLogin" : {"type" : "string"},
-        "Authority" : {"type" : "object"},
-        "Channels" : {"type" : "array", "items" : {"type" : "string"}},
-        "ChannelInfo" : {"type" : "object"},
+        "Authority" : {"type" : "string"},
+        "Channels" : {"type" : "string"},
+        "ChannelInfo" : {"type" : "string"},
         "Phone" : {"type" : "string"},
-    }
+    },
 }
 
 User_Auth = {
-    "type" : "object",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/product.schema.json",
+    "type" : "array",
     "properties" : {
         "Dashboard" : {"type" : "boolean"},
         "Livechat" : {"type" : "boolean"},
@@ -50,7 +54,9 @@ User_Auth = {
 }
 
 User_Info = {
-    "type" : "object",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/product.schema.json",
+    "type" : "array",
     "properties" : {
         "Phone" : {"type" : "string"},
         "Address" : {"type" : "string"},
@@ -59,7 +65,9 @@ User_Info = {
 }
 
 CustomerSchema = {
-    "type" : "object",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/product.schema.json",
+    "type" : "array",
     "properties" : {
         "ID" : {"type" : "string"},
         "Name" : {"type" : "string"},
@@ -82,7 +90,9 @@ CustomerSchema = {
 }
 
 RoleSchema = {
-    "type" : "object",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/product.schema.json",
+    "type" : "array",
     "properties" : {
         "Name" : {"type" : "string"},
         "Dashboard" : {"type" : "boolean"},
@@ -98,7 +108,9 @@ RoleSchema = {
 }
 
 TagSchema = {
-    "type" : "object",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/product.schema.json",
+    "type" : "array",
     "properties" : {
         "ID" : {"type" : "string"},
         "Tags" : {"type" : "string"},

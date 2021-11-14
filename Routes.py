@@ -1,3 +1,4 @@
+from datetime import date
 import model
 import pandas as pd
 import requests
@@ -23,8 +24,9 @@ def users():
         #    ans = json.loads(isjson)
 
         wb = pd.read_excel(f)
-        isjson= wb.to_json(orient= 'records')
+        isjson= wb.to_json(orient= 'records', date_format='iso')
         ans = json.loads(isjson)
+        print(ans)
         
         try: 
             jsonschema.validate(instance=ans, schema=model.UserSchema)
@@ -42,7 +44,7 @@ def users():
     except r.status_code > 300:    
         return jsonify({"Status" : str(r.status_code) + r.text, "Data" : ans})
          
-    finally:
+    except:
         return render_template('index.html')
     
 @app.route('/customers', methods=['POST', 'GET'])
@@ -53,7 +55,7 @@ def customers():
         isjson=json
 
         wb = pd.read_excel(f)
-        isjson= wb.to_json(orient= 'records')
+        isjson= wb.to_json(orient= 'records', date_format='iso')
         ans = json.loads(isjson)
         
         try: 
@@ -75,7 +77,7 @@ def customers():
     except getr.status_code > 300:    
         return jsonify({"Get Status" : str(getr.status_code) + getr.text, "Data" : ans})
     
-    finally:
+    except:
         return render_template('index.html')
     
 @app.route('/tags', methods=['POST', 'GET'])
@@ -85,7 +87,7 @@ def tags():
         isjson=json
 
         wb = pd.read_excel(f)
-        isjson= wb.to_json(orient= 'records')
+        isjson= wb.to_json(orient= 'records', date_format='iso')
         ans = json.loads(isjson)
         
         try: 
@@ -103,7 +105,7 @@ def tags():
     except r.status_code > 300:    
         return jsonify({"Status" : str(r.status_code) + r.text, "Data" : ans})
          
-    finally:
+    except:
         return render_template('index.html')
 
 @app.route('/roles', methods=['POST', 'GET'])
@@ -114,7 +116,7 @@ def roles():
         isjson=json
 
         wb = pd.read_excel(f)
-        isjson= wb.to_json(orient= 'records')
+        isjson= wb.to_json(orient= 'records', date_format='iso')
         ans = json.loads(isjson)
         
         try: 
@@ -132,7 +134,7 @@ def roles():
     except r.status_code > 300:    
         return jsonify({"Status" : str(r.status_code) + r.text, "Data" : ans})
          
-    finally:
+    except:
         return render_template('index.html')
 
 # @app.route('/rules', methods=['POST', 'GET'])
